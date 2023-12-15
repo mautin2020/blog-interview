@@ -23,4 +23,5 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('logout', 'App\Http\Controllers\LoginController@logout');
     Route::post('createBlog', 'App\Http\Controllers\Blog\BlogPostController@createBlog');
     Route::put('updateBlog/{id}', 'App\Http\Controllers\Blog\BlogPostController@updateBlog');
+    Route::delete('deleteBlog/{id}', 'App\Http\Controllers\Blog\BlogPostController@deleteBlog');
 });

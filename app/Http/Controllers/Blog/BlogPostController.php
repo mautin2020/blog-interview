@@ -37,9 +37,26 @@ class BlogPostController extends Controller
         $blog = $this->blogs->find($blogID);
         
         $this->authorize('update', $blog);
+
+        $updateBlog = $this->blogs->update($blogID,[
+            'title'=> $request->title,
+            'content'=> $request->content
+        ]);
+
+        return new BlogResource($blog);
     }
 
     public function deleteBlog($blogID) {
-        
+
+        $this->authorize('delete', $blogID);
+
+        $blog = $this->blogs->find($blogID);
+
+        $this->blogs->delete($blogID);
+
+
+        return response()->json([
+            'messages' => 'Post successfully delted'
+        ], 200);
     }
 }
